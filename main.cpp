@@ -9,11 +9,16 @@
 
 static const int default_fps = 100;
 
-void usage(const char *appname)
+static void usage(const char *appname)
 {
     std::cerr << "Usage: " << appname <<
         " <config>" << std::endl;
     exit(EXIT_FAILURE);
+}
+
+static void print_speed(int speed)
+{
+    std::cout << "Speed: " << speed << "x" << std::endl;
 }
 
 int main(int argc, char *argv[])
@@ -45,14 +50,31 @@ int main(int argc, char *argv[])
                     return 0;
 
                 case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_SPACE) {
-                        if (simulation.paused())
+                    switch (event.key.keysym.sym) {
+                    case SDLK_SPACE:
+                        if (simulation.paused()) {
+                            std::cout << "Resumed" << std::endl;
                             simulation.resume();
-                        else
+                        }
+                        else {
+                            std::cout << "Paused" << std::endl;
                             simulation.pause();
+                        }
+
+                        break;
+
+                    case SDLK_UP:
+                        simulation.incSpeed();
+                        print_speed(simulation.getSpeed());
+                        break;
+
+                    case SDLK_DOWN:
+                        simulation.decSpeed();
+                        print_speed(simulation.getSpeed());
+                        break;
                     }
                 }
-                    
+
             }
 
             simulation.tick();

@@ -58,6 +58,9 @@ public:
     bool paused() const;
     void pause();
     void resume();
+    void incSpeed();
+    void decSpeed();
+    int getSpeed() const;
     void tick();
 };
 

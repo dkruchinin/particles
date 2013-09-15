@@ -10,12 +10,15 @@ static const Uint8 background_r = 255;
 static const Uint8 background_g = 255;
 static const Uint8 background_b = 255;
 
+static const int SPEED_MIN = 1;
+static const int SPEED_MAX = 3;
+
 Simulation::Simulation(int width, int height, int fps)
 {
     this->width = width;
     this->height = height;
     this->fps = fps;
-    speed = 1;
+    speed = SPEED_MIN;
     now = 0.0;
     delay_ms = 1000 / fps;
     window = nullptr;
@@ -172,6 +175,23 @@ void Simulation::resume()
 bool Simulation::paused() const
 {
     return is_paused;
+}
+
+void Simulation::incSpeed()
+{
+    if (speed < SPEED_MAX)
+        speed++;
+}
+
+void Simulation::decSpeed()
+{
+    if (speed > SPEED_MIN)
+        speed--;
+}
+
+int Simulation::getSpeed() const
+{
+    return speed;
 }
 
 void Simulation::moveParticles(double dt)
