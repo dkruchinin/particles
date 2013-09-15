@@ -18,6 +18,7 @@ Simulation::Simulation(int width, int height, int fps)
     this->width = width;
     this->height = height;
     this->fps = fps;
+    is_paused = false;
     speed = SPEED_MIN;
     now = 0.0;
     delay_ms = 1000 / fps;

@@ -12,7 +12,7 @@ static const int default_fps = 100;
 static void usage(const char *appname)
 {
     std::cerr << "Usage: " << appname <<
-        " <config>" << std::endl;
+        " <width> <height> <config>" << std::endl;
     exit(EXIT_FAILURE);
 }
 
@@ -23,12 +23,43 @@ static void print_speed(int speed)
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc != 4)
         usage(argv[0]);
 
+
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cerr << "Failed to init SDL: " << SDL_GetError() << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    SDL_DisplayMode dmode;
+    if (SDL_GetDesktopDisplayMode(0, &dmode) != 0) {
+        std::cerr << "Failed to get display mode: " << SDL_GetError()
+                  << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    int width = strtol(argv[1], NULL, 10);
+    int height = strtol(argv[2], NULL, 10);
+
+    if (width < 200 || height < 200) {
+        std::cerr << "Width/height can not be less than 200" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    if (width > dmode.w) {
+        std::cerr << "Width can not be greater than " << dmode.w
+                  << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    if (height > dmode.h) {
+        std::cerr << "Height can not be greater than " << dmode.h
+                  << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
     try {
-        PConfig cfg(argv[1]);
-        Simulation simulation(400, 400, default_fps);
+        PConfig cfg(argv[3]);
+        Simulation simulation(width, height, default_fps);
 
         while (true) {
             std::unique_ptr<PConfigEntry> entry = cfg.nextEntry();
