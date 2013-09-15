@@ -22,8 +22,13 @@ Simulation::Simulation(int width, int height, int fps)
     renderer = nullptr;
 
     if (SDL_CreateWindowAndRenderer(width, height, 0,
-            &window, &renderer) != 0)
-        throw SimulationError("Failed to create window");
+            &window, &renderer) != 0) {
+        std::ostringstream oss;
+
+        oss << "Failed to create window (SDL: "
+            << SDL_GetError() << ")";
+        throw SimulationError(oss.str());
+    }
 
     resetBackgroundColor();
 }

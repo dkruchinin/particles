@@ -21,15 +21,27 @@ struct PConfigEntry {
 };
 
 class PConfigError : public std::runtime_error {
+private:
+    int line;
+    int col;
 public:
-    PConfigError(int lineNum, const std::string msg) :
-        std::runtime_error(std::to_string(lineNum) + ": " + msg) {};
+    PConfigError(int line, int col, const std::string msg) :
+        std::runtime_error(msg), line(line), col(col) {};
     virtual ~PConfigError() {};
+
+    int getLine() const {
+        return line;
+    }
+
+    int getColumn() const {
+        return col;
+    }
 };
 
 // Quick&dirty config parser.
 class PConfig {
 private:
+    int colNum;
     int lineNum;
     std::ifstream ifile;
 
@@ -40,15 +52,16 @@ private:
 
         ss >> val;
         if (ss.fail())
-            throw PConfigError(lineNum, name + " was expected next, but " +
+            throw PConfigError(lineNum, colNum, name + " was expected next, but " +
                                "got nothing");
         if (val < floor)
-            throw PConfigError(lineNum, name + " can not be less than " +
+            throw PConfigError(lineNum, colNum, name + " can not be less than " +
                                std::to_string(floor));
         if (val > ceil)
-            throw PConfigError(lineNum, name + " can not be greater than " +
+            throw PConfigError(lineNum, colNum, name + " can not be greater than " +
                                std::to_string(ceil));
 
+        colNum++;
         return val;
     }
 
@@ -57,6 +70,7 @@ public:
     PConfig(const char *cfg_file);
     virtual ~PConfig();
     std::unique_ptr<PConfigEntry> nextEntry();
+    static const char *formatString();
 };
 
 #endif /* _PCONFIG_HPP_ */

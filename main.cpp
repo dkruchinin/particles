@@ -59,7 +59,9 @@ int main(int argc, char *argv[])
         }
     }
     catch (PConfigError &e) {
-        std::cerr << "Configuration file error: " << e.what() << std::endl;
+        std::cerr << "Configuration file error: [l: " << e.getLine()
+                  << ", c: " << e.getColumn() << "]: " << e.what() << std::endl;
+        std::cerr << "Format: " << PConfig::formatString() << std::endl;
         exit(EXIT_FAILURE);
     }
     catch (SimulationError &e) {

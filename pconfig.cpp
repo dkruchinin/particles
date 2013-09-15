@@ -40,6 +40,7 @@ std::unique_ptr<PConfigEntry> PConfig::nextEntry()
     std::istringstream ss(line);
     PConfigEntry *entry = new PConfigEntry();
 
+    colNum = 0;
     entry->rx = readValue<double>(ss, "X coordinate", 0.0, 1.0);
     entry->ry = readValue<double>(ss, "Y coordinate", 0.0, 1.0);
     entry->vx = readValue<double>(ss, "X velocity", -1.0, 1.0);
@@ -51,4 +52,9 @@ std::unique_ptr<PConfigEntry> PConfig::nextEntry()
     entry->b = readValue<int>(ss, "Blue value", 0, 255);
 
     return std::unique_ptr<PConfigEntry>(entry);
+}
+
+const char *PConfig::formatString()
+{
+    return "x y vx vy mass radius r g b";
 }
