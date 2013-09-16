@@ -43,15 +43,15 @@ Line format:
     x y vx vy mass radius r g b
 
 Where:
-* x: relative x coordinate in range [0.0, 1.0] (absolute = width * x)
-* y: relative y coordinate in range [0.0, 1.0] (absolute = height * y)
-* vx: relative velocity along X axis [0.0, 1.0] (absolute = (width + height) / 2 * vx)
-* vy: relative velocity along Y axis [0.0, 1.0] (absolute = (width + height) / 2 * vy)
-* mass: mass of the particle [1, 100]
-* radius: relative radius of the particle [0.0, 1.0] (absolute = (width + height) / 2 * radius)
-* r: red color value [0, 255]
-* g: green color value [0, 255]
-* b: blue color value [0, 255]
+* x: relative x coordinate in range ```[0.0, 1.0]``` (absolute = width * x)
+* y: relative y coordinate in range ```[0.0, 1.0]``` (absolute = height * y)
+* vx: relative velocity along X axis ```[0.0, 1.0]``` (absolute = (width + height) / 2 * vx)
+* vy: relative velocity along Y axis ```[0.0, 1.0]``` (absolute = (width + height) / 2 * vy)
+* mass: mass of the particle ```[1, 100]```
+* radius: relative radius of the particle ```[0.0, 1.0]``` (absolute = (width + height) / 2 * radius)
+* r: red color value ```[0, 255]```
+* g: green color value ```[0, 255]```
+* b: blue color value ```[0, 255]```
 
 Example of the valid configuration file
 
@@ -62,3 +62,19 @@ Example of the valid configuration file
     .6502 .4 0 0 10 .04 50 50 50
 
 You can find a few ready to use configuration files in the configs directory.
+
+Controls
+--------
+
+* Space: pause/resume
+* Up: increase speed
+* Down decrease speed
+
+Some examples
+=============
+
+Brownian motion:
+![Sample](https://raw.github.com/dkruchinin/particles/master/misc/brownian.jpg)
+
+1000 colliding particles
+![Sample2](https://raw.github.com/dkruchinin/particles/master/misc/1000p.jpg)
