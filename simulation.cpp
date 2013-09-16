@@ -103,8 +103,14 @@ void Simulation::tick()
     // that's why the system allows to detect whether the event
     // is stale/cancelled.
 
-    if (events.empty())
+    if (events.empty()) {
+        if (particles.size() == 0) {
+            throw SimulationError("Simulation can not be launched "
+                                  "with 0 particles");
+        }
+
         initializeEvents();
+    }
     if (is_paused) {
         SDL_Delay(delay_ms);
         return;
