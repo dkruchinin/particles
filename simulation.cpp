@@ -304,10 +304,10 @@ void Simulation::addWallCollisionEvent(Particle &p, WallType wtype)
 
 int Simulation::simulationTimeToMS(double sim_time) const
 {
-    return 50 / speed * sim_time;
+    return 100 / speed * sim_time;
 }
 
 double Simulation::MSToSimulationTime(int ms) const
 {
-    return (double)ms / 50 * speed;
+    return (double)ms / 100 * speed;
 }

@@ -1,4 +1,4 @@
-#include <iomanip>
+#include <iostream>
 #include <cmath>
 #include "particle.hpp"
 
@@ -76,6 +76,7 @@ void Particle::bounceParticle(Particle &p)
      * floating point error accumulating in less significant
      * digits of mantissa.
      */
+
     vx = round(vx + Jx / mass, 8);
     vy = round(vy + Jy / mass, 8);
     p.vx = round(p.vx - Jx / p.mass, 8);
