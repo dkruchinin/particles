@@ -61,7 +61,9 @@ Example of the valid configuration file
     .5501 .4 0 0 10 .04 50 50 50
     .6502 .4 0 0 10 .04 50 50 50
 
-You can find a few ready to use configuration files in the configs directory.
+You can find a few ready to use configuration files in the configs directory:
+
+    % ./simulation 600 600 configs/<something>
 
 Controls
 --------
@@ -74,7 +76,15 @@ Some examples
 =============
 
 Brownian motion:
-![Sample](https://raw.github.com/dkruchinin/particles/master/misc/brownian.jpg)
+-----------------
 
-1000 colliding particles
-![Sample2](https://raw.github.com/dkruchinin/particles/master/misc/1000p.jpg)
+    % ./simulation 600 600 configs/brownian
+
+![Sample](https://raw.github.com/dkruchinin/particles/master/misc/brownian.png)
+
+1000 colliding particles:
+-------------------------
+
+    % ./simulation 600 600 configs/1000p
+
+![Sample2](https://raw.github.com/dkruchinin/particles/master/misc/1000p.png)
