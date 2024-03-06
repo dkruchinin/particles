@@ -21,6 +21,7 @@ Before you try to build this, you need:
 ### Build with CMake
 
     % mkdir build
+    % cd build
     % cmake ..
     % cmake --build .
 
