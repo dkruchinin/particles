@@ -1,5 +1,5 @@
 About
-======
+=====
 
 This is a simulation of the motion of N colliding particles working according to the laws of elastic collision.
 The simulation uses event driven model which makes it pretty swift. This thing can be used to demonstrate the
@@ -9,22 +9,28 @@ For more informatino read this: http://introcs.cs.princeton.edu/java/assignments
 
 
 Building
-======
+========
 
 Before you try to build this, you need:
 
-* OSX: well, if you want to build it under linux you'll have to hack the makefile yourself. I hope I'll have enough time and enthusiasm to migrate this to cmake or something.
+* OSX: well, if you want to build it under linux you'll have to hack the makefile yourself.
 * Compiler supporting C++11
-* GNU Make
-* SDL2: http://www.libsdl.org/download-2.0.php
+* GNU Make or cmake (3.16)
+* SDL2: https://github.com/libsdl-org/SDL
 
-If you have all these just run
+### Build with CMake
+
+    % mkdir build
+    % cd build
+    % cmake ..
+    % cmake --build .
+
+### Build with Make
 
     % make
 
-
 Usage
-======
+=====
 
     % ./simulation
     Usage: ./simulation <width> <height> <config>
@@ -76,7 +82,7 @@ Some examples
 =============
 
 Brownian motion:
------------------
+----------------
 
     % ./simulation 600 600 configs/brownian
 

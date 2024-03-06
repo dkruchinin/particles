@@ -9,7 +9,7 @@ all: simulation
 simulation: $(ofiles) $(headers)
 	$(CXX) $(CXXFLAGS) $(ofiles) -o $@ $(LDFLAGS)
 
-%.o: %.cpp
+%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 clean:
